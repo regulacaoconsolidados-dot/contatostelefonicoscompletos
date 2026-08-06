@@ -180,7 +180,7 @@
         /* ===== CATEGORIAS ===== */
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.8rem;
             max-width: 1600px;
             margin: 0 auto;
@@ -193,90 +193,55 @@
             padding: 1.5rem;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
             border: 1px solid #edf0f7;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.25s;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #1a3f62 0%, #4a7a9c 100%);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover::before {
-            transform: scaleX(1);
         }
 
         .category-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px rgba(0, 20, 40, 0.08);
             border-color: #d4dceb;
         }
 
-        .category-card:active {
-            transform: translateY(-4px) scale(0.98);
-        }
-
-        .category-header {
+        .category-card .card-header {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 1rem;
+            gap: 14px;
+            margin-bottom: 0.8rem;
         }
 
-        .category-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #0b2b4a 0%, #1a3f62 100%);
-            border-radius: 16px;
+        .category-card .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0f4fe;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            color: white;
+            font-size: 1.4rem;
+            color: #1a3f62;
             flex-shrink: 0;
-            transition: all 0.3s ease;
         }
 
-        .category-card:hover .category-icon {
-            transform: rotate(-5deg) scale(1.05);
-            box-shadow: 0 8px 16px rgba(26, 63, 98, 0.3);
-        }
-
-        .category-info {
+        .category-card .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0b2b4a;
             flex: 1;
         }
 
-        .category-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #0b2b4a;
-            line-height: 1.3;
-        }
-
-        .category-count {
+        .category-card .card-count {
             font-size: 0.85rem;
             color: #6b7f9a;
             font-weight: 500;
         }
 
-        .category-count i {
-            margin-right: 4px;
+        .category-card .card-count i {
             color: #1a3f62;
+            margin-right: 4px;
         }
 
-        .category-preview {
+        .category-card .card-preview {
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
@@ -285,91 +250,89 @@
             border-top: 1px solid #edf0f7;
         }
 
-        .category-preview span {
+        .category-card .card-preview span {
             background: #f2f6fd;
-            padding: 0.15rem 0.7rem;
+            padding: 0.2rem 0.8rem;
             border-radius: 20px;
             font-size: 0.75rem;
             color: #1a3f62;
             font-weight: 500;
-            white-space: nowrap;
         }
 
-        .category-arrow {
-            color: #9aa6b9;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
+        .category-card .card-arrow {
+            color: #c0c8d8;
+            font-size: 1rem;
+            transition: transform 0.2s;
             margin-left: auto;
-            flex-shrink: 0;
         }
 
-        .category-card:hover .category-arrow {
-            color: #1a3f62;
+        .category-card:hover .card-arrow {
             transform: translateX(4px);
+            color: #1a3f62;
         }
 
-        /* ===== BADGE DE QUANTIDADE ANIMADA ===== */
-        .count-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #1a3f62;
-            color: white;
-            border-radius: 40px;
-            padding: 0.1rem 0.7rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            min-width: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .category-card:hover .count-badge {
-            background: #0b2b4a;
-            transform: scale(1.1);
-        }
-
-        /* ===== SEÇÃO DE TELEFONES (expansível) ===== */
+        /* ===== SEÇÃO DE TELEFONES ===== */
         .phones-section {
-            margin-top: 3rem;
+            margin-top: 2rem;
             display: none;
-            animation: slideDown 0.4s ease;
+            animation: fadeIn 0.3s ease;
         }
 
         .phones-section.active {
             display: block;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .phones-section .section-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #0b2b4a;
-            margin-bottom: 1.5rem;
+        .phones-section .section-header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 0.8rem;
             border-bottom: 3px solid #1a3f62;
         }
 
-        .phones-section .section-title i {
-            color: #1a3f62;
+        .phones-section .section-header h2 {
             font-size: 1.3rem;
+            font-weight: 600;
+            color: #0b2b4a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phones-section .section-header h2 i {
+            color: #1a3f62;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 2px solid #e9edf4;
+            color: #3a4c6b;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            border-color: #1a3f62;
+            background: #f0f4fe;
+            transform: translateX(-4px);
         }
 
         .phones-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.2rem;
         }
 
@@ -379,28 +342,16 @@
             border-radius: 16px;
             padding: 1.2rem 1.5rem;
             border: 1px solid #edf0f7;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 14px;
-            animation: fadeInUp 0.4s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .phone-card:hover {
-            transform: translateX(6px);
-            border-color: #1a3f62;
-            box-shadow: 0 4px 12px rgba(26, 63, 98, 0.08);
+            transform: translateX(4px);
+            border-color: #d4dceb;
+            box-shadow: 0 4px 12px rgba(0, 20, 40, 0.06);
         }
 
         .phone-card .phone-icon {
@@ -412,93 +363,59 @@
             align-items: center;
             justify-content: center;
             color: #1a3f62;
-            font-size: 1.1rem;
+            font-size: 1rem;
             flex-shrink: 0;
-            transition: all 0.3s ease;
         }
 
-        .phone-card:hover .phone-icon {
-            background: #1a3f62;
-            color: white;
-            transform: rotate(-10deg) scale(1.1);
-        }
-
-        .phone-card .phone-content {
+        .phone-card .phone-info {
             flex: 1;
             min-width: 0;
         }
 
-        .phone-card .phone-content .phone-name {
+        .phone-card .phone-info .name {
             font-size: 0.95rem;
             font-weight: 600;
             color: #0b2b4a;
-            margin-bottom: 0.15rem;
         }
 
-        .phone-card .phone-content .phone-number {
+        .phone-card .phone-info .number {
             font-size: 0.9rem;
             color: #1a3f62;
             font-weight: 500;
         }
 
-        .phone-card .phone-content .phone-number a {
+        .phone-card .phone-info .number a {
             color: #1a3f62;
             text-decoration: none;
-            transition: color 0.2s;
         }
 
-        .phone-card .phone-content .phone-number a:hover {
-            color: #0b2b4a;
+        .phone-card .phone-info .number a:hover {
             text-decoration: underline;
         }
 
-        .phone-card .phone-content .phone-obs {
+        .phone-card .phone-info .obs {
             font-size: 0.8rem;
             color: #6b7f9a;
             font-style: italic;
+            margin-top: 2px;
         }
 
-        .phone-card .phone-copy {
-            color: #9aa6b9;
-            font-size: 0.9rem;
+        .phone-card .copy-btn {
+            color: #c0c8d8;
             cursor: pointer;
-            transition: all 0.3s ease;
             padding: 6px;
             border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
         }
 
-        .phone-card .phone-copy:hover {
+        .phone-card .copy-btn:hover {
             color: #1a3f62;
             background: #f0f4fe;
-            transform: scale(1.1);
         }
 
-        .phone-card .phone-copy.copied {
+        .phone-card .copy-btn.copied {
             color: #28a745;
-        }
-
-        /* ===== BOTÃO VOLTAR ===== */
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            border: 2px solid #1a3f62;
-            color: #1a3f62;
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
-        }
-
-        .back-btn:hover {
-            background: #1a3f62;
-            color: white;
-            transform: translateX(-4px);
-            box-shadow: 0 4px 12px rgba(26, 63, 98, 0.2);
         }
 
         /* ===== NO RESULTS ===== */
@@ -506,10 +423,8 @@
             text-align: center;
             padding: 4rem 0;
             color: #3a4c6b;
-            font-weight: 400;
             background: #f0f4fe;
             border-radius: 60px;
-            font-size: 1.1rem;
             display: none;
             grid-column: 1 / -1;
         }
@@ -520,18 +435,17 @@
 
         .no-results i {
             font-size: 3rem;
-            color: #9aa6b9;
+            color: #c0c8d8;
             margin-bottom: 1rem;
         }
 
         .no-results h3 {
-            font-size: 1.5rem;
-            color: #3a4c6b;
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .no-results p {
-            font-size: 1rem;
             color: #6b7f9a;
         }
 
@@ -542,25 +456,14 @@
                 flex-direction: column;
                 gap: 8px;
             }
-
             .header-sub {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
-
+            .categories-grid,
             .phones-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .category-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
+                gap: 1.2rem;
             }
         }
 
@@ -568,7 +471,6 @@
             .header {
                 padding: 1.5rem;
             }
-
             .search-wrapper {
                 flex-wrap: wrap;
                 background: transparent;
@@ -576,32 +478,25 @@
                 padding: 0;
                 gap: 0.6rem;
             }
-
             .search-wrapper input {
                 background: white;
                 padding: 0.9rem 1.5rem;
                 border-radius: 60px;
                 border: 1px solid #dde3ed;
             }
-
             .search-wrapper .clear-btn {
                 padding: 0 0.5rem;
             }
-
             .phone-card {
                 padding: 1rem;
                 flex-wrap: wrap;
-            }
-
-            .phone-card .phone-copy {
-                margin-left: auto;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- ========== HEADER ========== -->
+<!-- ===== HEADER ===== -->
 <header class="header">
     <h1>
         <i class="fas fa-phone-alt"></i>
@@ -622,61 +517,45 @@
     </div>
 </header>
 
-<!-- ========== SEARCH ========== -->
+<!-- ===== SEARCH ===== -->
 <div class="search-wrapper">
     <span class="search-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="Pesquisar categorias, setores ou telefones..." autofocus />
     <button class="clear-btn" id="clearBtn" aria-label="Limpar busca">✕</button>
 </div>
 
-<!-- ========== INFO BADGE ========== -->
+<!-- ===== INFO BADGE ===== -->
 <div class="info-badge">
     <i class="fas fa-info-circle"></i>
     <span>Mostrando <strong id="visibleCount">0</strong> de <strong id="totalCount">0</strong> categorias</span>
 </div>
 
-<!-- ========== CATEGORIAS ========== -->
+<!-- ===== CATEGORIAS ===== -->
 <div class="categories-grid" id="categoriesContainer">
-    <!-- Card 1: CEAPS / Alto Custo -->
+    <!-- 1 - CEAPS -->
     <div class="category-card" data-category="ceaps alto custo">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-capsules"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">CEAPS / Alto Custo</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 3 telefones
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-capsules"></i></div>
+            <div class="card-title">CEAPS / Alto Custo</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
-            <span>3198-6752</span>
-            <span>3198-6753</span>
-            <span>ceapsdr@gmail.com</span>
+        <div class="card-count"><i class="fas fa-phone"></i> 3 telefones</div>
+        <div class="card-preview">
+            <span>Alto Custo</span>
+            <span>Oncologia</span>
+            <span>Cirurgia Eletiva</span>
         </div>
     </div>
 
-    <!-- Card 2: CMC - Central de Marcação de Consultas -->
+    <!-- 2 - CMC -->
     <div class="category-card" data-category="cmc central marcação consultas">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-calendar-check"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">CMC - Marcação de Consultas</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 12 telefones
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="card-title">CMC - Marcação de Consultas</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
+        <div class="card-count"><i class="fas fa-phone"></i> 12 telefones</div>
+        <div class="card-preview">
             <span>Eldorado</span>
             <span>Industrial</span>
             <span>Ressaca</span>
@@ -684,23 +563,15 @@
         </div>
     </div>
 
-    <!-- Card 3: Contatos Telefônicos Diversos -->
+    <!-- 3 - Diversos -->
     <div class="category-card" data-category="diversos cce caps samu ouvidoria">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-address-book"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">Contatos Diversos</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 26 telefones
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-address-book"></i></div>
+            <div class="card-title">Contatos Diversos</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
+        <div class="card-count"><i class="fas fa-phone"></i> 26 telefones</div>
+        <div class="card-preview">
             <span>CCE</span>
             <span>Caps</span>
             <span>SAMU</span>
@@ -708,23 +579,15 @@
         </div>
     </div>
 
-    <!-- Card 4: CCE Iria Diniz -->
+    <!-- 4 - CCE Iria Diniz -->
     <div class="category-card" data-category="cce iria diniz">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-hospital-alt"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">CCE Iria Diniz</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 25 telefones
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-hospital-alt"></i></div>
+            <div class="card-title">CCE Iria Diniz</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
+        <div class="card-count"><i class="fas fa-phone"></i> 25 telefones</div>
+        <div class="card-preview">
             <span>Administração</span>
             <span>Direção</span>
             <span>DST</span>
@@ -732,23 +595,15 @@
         </div>
     </div>
 
-    <!-- Card 5: Distritos Sanitários -->
+    <!-- 5 - Distritos -->
     <div class="category-card" data-category="distritos sanitários">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-map-marked-alt"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">Distritos Sanitários</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 8 distritos
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div class="card-title">Distritos Sanitários</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
+        <div class="card-count"><i class="fas fa-phone"></i> 8 distritos</div>
+        <div class="card-preview">
             <span>Eldorado</span>
             <span>Industrial</span>
             <span>Nacional</span>
@@ -756,71 +611,48 @@
         </div>
     </div>
 
-    <!-- Card 6: UBS - Unidades Básicas de Saúde -->
+    <!-- 6 - UBS + USF -->
     <div class="category-card" data-category="ubs unidades básicas saúde">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-hospital"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">UBS - Unidades Básicas</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 60+ unidades
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-hospital"></i></div>
+            <div class="card-title">UBS + USF - Unidades Básicas</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
+        <div class="card-count"><i class="fas fa-phone"></i> 70+ unidades</div>
+        <div class="card-preview">
             <span>Eldorado</span>
             <span>Industrial</span>
             <span>Ressaca</span>
             <span>Vargem</span>
+            <span>Petrolândia</span>
         </div>
     </div>
 
-    <!-- Card 7: UPAs - Unidades de Pronto Atendimento -->
+    <!-- 7 - UPAs -->
     <div class="category-card" data-category="upas pronto atendimento urgência">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-ambulance"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">UPAs - Pronto Atendimento</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 6 unidades
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-ambulance"></i></div>
+            <div class="card-title">UPAs - Pronto Atendimento</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
+        <div class="card-count"><i class="fas fa-phone"></i> 6 unidades</div>
+        <div class="card-preview">
             <span>UPA JK</span>
-            <span>UPA Industrial</span>
-            <span>UPA Ressaca</span>
+            <span>Industrial</span>
+            <span>Ressaca</span>
             <span>24h</span>
         </div>
     </div>
 
-    <!-- Card 8: Contatos Telefônicos (Geral) -->
+    <!-- 8 - Contatos Gerais -->
     <div class="category-card" data-category="contatos telefônicos geral diretoria">
-        <div class="category-header">
-            <div class="category-icon">
-                <i class="fas fa-phone"></i>
-            </div>
-            <div class="category-info">
-                <div class="category-name">Contatos Telefônicos Geral</div>
-                <div class="category-count">
-                    <i class="fas fa-phone"></i> 30+ telefones
-                </div>
-            </div>
-            <div class="category-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+        <div class="card-header">
+            <div class="card-icon"><i class="fas fa-phone"></i></div>
+            <div class="card-title">Contatos Telefônicos Geral</div>
+            <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
         </div>
-        <div class="category-preview">
+        <div class="card-count"><i class="fas fa-phone"></i> 21 telefones</div>
+        <div class="card-preview">
             <span>Administrativo</span>
             <span>Médico</span>
             <span>Apoio</span>
@@ -829,21 +661,21 @@
     </div>
 </div>
 
-<!-- ========== SEÇÃO DE TELEFONES (expansível) ========== -->
+<!-- ===== SEÇÃO DE TELEFONES ===== -->
 <div class="phones-section" id="phonesSection">
-    <button class="back-btn" id="backBtn">
-        <i class="fas fa-arrow-left"></i> Voltar
-    </button>
-    <div class="section-title" id="sectionTitle">
-        <i class="fas fa-phone"></i>
-        <span id="sectionTitleText">Telefones</span>
+    <div class="section-header">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+        <h2 id="sectionTitle">
+            <i class="fas fa-phone"></i>
+            <span id="sectionTitleText">Telefones</span>
+        </h2>
     </div>
-    <div class="phones-grid" id="phonesGrid">
-        <!-- Os telefones serão inseridos via JavaScript -->
-    </div>
+    <div class="phones-grid" id="phonesGrid"></div>
 </div>
 
-<!-- ========== MENSAGEM DE NENHUM RESULTADO ========== -->
+<!-- ===== NO RESULTS ===== -->
 <div class="no-results" id="noResults">
     <i class="fas fa-search"></i>
     <h3>Nenhum resultado encontrado</h3>
@@ -852,9 +684,9 @@
 
 <script>
     // ============================================================
-    // DADOS COMPLETOS ORGANIZADOS POR CATEGORIA
+    // DADOS COMPLETOS - TODOS OS TELEFONES
     // ============================================================
-    const telefonesData = {
+    const dados = {
         'ceaps': {
             titulo: 'CEAPS / Alto Custo',
             icon: 'fa-capsules',
@@ -960,14 +792,26 @@
             ]
         },
         'ubs': {
-            titulo: 'UBS - Unidades Básicas de Saúde',
+            titulo: 'UBS + USF - Unidades Básicas de Saúde',
             icon: 'fa-hospital',
             telefones: [
-                { nome: 'UBS CSU Eldorado', telefone: '5548 / 3352-5251 / 3392-2171', obs: 'marcacaocsu@gmail.com' },
+                // ===== ELDORADO =====
+                { nome: 'Distrito Sanitário Eldorado', telefone: '3392-2137 / ZOONOSES 3392-2211 / EPIDEMIO 3392-2175 / 2151 / ADM GC ADRIANA 3356-6270', obs: 'marcacaodistritoeldorado@gmail.com' },
+                { nome: 'UBS CSU Eldorado', telefone: '5548 / 3352-5251 / 3392-2171 / 3353-3548 / 3911-4748', obs: 'marcacaocsu@gmail.com' },
                 { nome: 'UBS Água Branca', telefone: '3394-8059 / 3352-5245 / 3394-8574', obs: 'ubsaguabranca@gmail.com' },
                 { nome: 'UBS Jardim Bandeirantes', telefone: '3352-5248 / 3353-2401 / 2410', obs: 'marcacaoadm@gmail.com' },
                 { nome: 'UBS Novo Eldorado', telefone: '3472-6397 / 3363-5736', obs: 'marcacaonovoeldorado@gmail.com' },
-                { nome: 'UBS Santa Cruz', telefone: '3911-9423 / 3911-9460', obs: 'marcacaosantacruz@gmail.com' },
+                { nome: 'UBS Santa Cruz', telefone: '3911-9423 / 3911-9460 / (99257-1809 Institucional)', obs: 'marcacaosantacruz@gmail.com' },
+                { nome: 'UBS Unidade XV', telefone: '3356-1214 / 3352-5271', obs: 'cmcusfxv@gmail.com' },
+                { nome: 'USF Parque São João I (USF 73)', telefone: '3352-5259 / 3911-4852 / 3352-2058 / ODONTO 3352-5846', obs: 'marcacaopsaojoao@gmail.com' },
+                { nome: 'USF Parque São João II (USF 76)', telefone: '3352-5259 / 3911-4852 / 3352-2058 / ODONTO 3352-5846', obs: 'marcacaopsaojoao@gmail.com' },
+                { nome: 'USF Parque São João III (USF 85)', telefone: '3352-5259 / 3911-4852 / 3352-2058 / ODONTO 3352-5846', obs: 'marcacaopsaojoao@gmail.com' },
+                { nome: 'USF Jardim Eldorado I (USF 74)', telefone: '3351-6735 / 3352-5254', obs: 'usfjardimeldorado@gmail.com' },
+                { nome: 'USF Jardim Eldorado II (USF 75)', telefone: '3351-6735 / 3352-5254', obs: 'usfjardimeldorado@gmail.com' },
+                { nome: 'USF Perobas', telefone: '3912-4620 / (99257-1805 Institucional)', obs: 'perobas70@gmail.com' },
+                { nome: 'USF Bela Vista (USF 68)', telefone: '3352-2545', obs: 'marcacaousfbelavista@gmail.com' },
+                // ===== INDUSTRIAL =====
+                { nome: 'Diretoria do Distrito Industrial', telefone: '3363-5791 / 3363-6290 / 3363-6092 / 3363-8880 / 3363-5673 / 3363-3882 / 3361-1117', obs: 'distritoindustrial@contagem.mg.gov.br' },
                 { nome: 'UBS Amazonas', telefone: '99257-0872 / 3363-3420', obs: 'marcacaoubsamazonas@gmail.com' },
                 { nome: 'UBS Bandeirantes', telefone: '99257-0115', obs: 'ubsbandeirantes.agendamento@gmail.com' },
                 { nome: 'UBS Industrial III', telefone: '3385-5998', obs: 'ubsindustrial3@gmail.com' },
@@ -975,11 +819,22 @@
                 { nome: 'UBS João Evangelista', telefone: '99257-2502', obs: 'ubsjoaoevangelista@gmail.com' },
                 { nome: 'UBS Vila Diniz', telefone: '3363-5842', obs: 'marcacaoviladinizcontagem@gmail.com' },
                 { nome: 'UBS Vila São Paulo', telefone: '3363-5821', obs: 'ubsvilasaopaulo2025@gmail.com' },
+                // ===== RESSACA =====
+                { nome: 'Distrito Ressaca', telefone: '3354-6367 / 3354-6221 / 3354-6220 / 3352-5703 / 3354-5215 / 3354-5247 / 3354-5419 / 3354-6317 / 3354-6386', obs: 'distrito.ressaca@contagem.mg.gov.br' },
                 { nome: 'UBS Arpoador', telefone: '3352-5762 / 3351-8923', obs: 'ubs.arpoador@contagem.mg.gov.br' },
                 { nome: 'UBS Colorado', telefone: '3393-7338 / 3352-5862 / 3394-3790', obs: 'ubs.colorado@contagem.mg.gov.br' },
                 { nome: 'UBS Campina Verde', telefone: '3352-5706', obs: 'ubs.campinaverde@contagem.mg.gov.br' },
                 { nome: 'UBS Laguna', telefone: '3352-5718 / 3354-6362 / 3394-9518', obs: 'ubs.laguna@contagem.mg.gov.br' },
                 { nome: 'UBS Morada Nova', telefone: '3352-5256', obs: 'ubs.moradanova@contagem.mg.gov.br' },
+                { nome: 'UBS Novo Boa Vista', telefone: '3352-5699', obs: 'ubs.novoboavista@contagem.mg.gov.br' },
+                { nome: 'UBS Novo Progresso II', telefone: '3352-5243', obs: 'ubsnovoprogresso2@contagem.mg.gov.br' },
+                { nome: 'UBS Oitis', telefone: '3352-5814 / 3912-7987', obs: 'ubs.oitis@contagem.mg.gov.br' },
+                { nome: 'UBS Parque Turista', telefone: '3352-5693 / 3354-8882', obs: 'ubs.parqueturista@contagem.mg.gov.br' },
+                { nome: 'UBS Presidente Kennedy', telefone: '3352-5761', obs: 'ubs.presidentekennedy@contagem.mg.gov.br' },
+                { nome: 'UBS Vila Pérola', telefone: '3393-7020 / 3352-5818 / 3352-5757', obs: 'ubs.vilaperola@contagem.mg.gov.br' },
+                { nome: 'UBS São Joaquim', telefone: '3357-9671 / 3357-4761 / 5723', obs: 'ubs.saojoaquim@contagem.mg.gov.br' },
+                // ===== NACIONAL =====
+                { nome: 'Distrito Sanitário Nacional', telefone: '3352-5720 / 3352-5863 / 3737-7464 / 3354-4680 / 3397-3739 / 3913-6324', obs: 'distrito.nacional@contagem.mg.gov.br' },
                 { nome: 'UBS Joaquim Murtinho', telefone: '3397-1856 / 3352-5747 / 3352-5702', obs: 'ubs.joaquimmurtinho@contagem.mg.gov.br' },
                 { nome: 'UBS Nacional', telefone: '3913-6175 / 3397-2297 / 3397-1940', obs: 'ubs.nacional@contagem.mg.gov.br' },
                 { nome: 'UBS Amendoeiras', telefone: '3397-3516', obs: 'ubs.amendoeiras@contagem.mg.gov.br' },
@@ -987,7 +842,10 @@
                 { nome: 'UBS Tijuco', telefone: '3352-5609 / 3397-4402', obs: 'ubs.tijuca@contagem.mg.gov.br' },
                 { nome: 'UBS Estrela Dalva', telefone: '3913-3622 / 3397-3634', obs: 'ubs.estreladalva@contagem.mg.gov.br' },
                 { nome: 'UBS Xangrilá', telefone: '3352-5824 / 3354-8772', obs: 'ubs.xangrila@contagem.mg.gov.br' },
-                { nome: 'UBS São Judas Tadeu', telefone: '3392-8047 / 3352-5686', obs: 'ubs.saojudastadeu@contagem.mg.gov.br' },
+                // ===== VARGEM DAS FLORES =====
+                { nome: 'Distrito Vargem das Flores', telefone: '(31) 3392-9807', obs: 'distrito.vargemdasflores@contagem.mg.gov.br' },
+                { nome: 'USF Retiro', telefone: '3352-5264 / 3392-8646', obs: 'usfretiro1e3@gmail.com' },
+                { nome: 'UBS São Judas Tadeu', telefone: '3392-8047 / 3352-5686 / 8047', obs: 'ubs.saojudastadeu@contagem.mg.gov.br' },
                 { nome: 'UBS Vila Renascer', telefone: '3352-3084 / 3356-1518', obs: 'vilarenascerpsf@gmail.com' },
                 { nome: 'UBS Vila Soledade', telefone: '3352-5655 / 3352-5707', obs: 'psfvilasoledade1e2@gmail.com' },
                 { nome: 'UBS Ipê Amarelo', telefone: '3911-6291 / 8455', obs: 'ipeamarelopsf@gmail.com' },
@@ -995,9 +853,49 @@
                 { nome: 'UBS Icaivera', telefone: '3352-5307', obs: 'icaiverapsf@gmail.com' },
                 { nome: 'UBS Tupã', telefone: '3914-1146', obs: 'tupapsf@gmail.com' },
                 { nome: 'UBS Liberdade II', telefone: '99257-0211 / 99169-4751', obs: 'postoliberdade2@gmail.com' },
+                { nome: 'Penitenciária Nelson Hungria (enfermagem)', telefone: '2129-9545 Ramal 1431 / 3392-8161', obs: 'distritovargemdasflores@contagem.mg.gov.br / cpnhenfermagem@seguranca.mg.gov.br' },
+                { nome: 'Penitenciária Nelson Hungria (saúde)', telefone: '2129-9545 Ramal 1431 / 3392-8161', obs: 'distritovargemdasflores@contagem.mg.gov.br / saudecpnh@seguranca.mg.gov.br' },
+                { nome: 'Nova Contagem (antiga Nova Contagem II)', telefone: '3356-8195', obs: 'ubsnovacontagem@gmail.com' },
+                { nome: 'Nova Contagem I', telefone: '3352-5258', obs: 'ubsnovacontagem@gmail.com' },
+                { nome: 'UBS Estaleiro', telefone: '3352-5689', obs: 'ubsnovacontagem@gmail.com' },
+                { nome: 'Vila Nova Esperança', telefone: '3352-5688', obs: 'ubsnovacontagem@gmail.com' },
+                // ===== PETROLÂNDIA =====
+                { nome: 'Coordenação Distrito Petrolândia', telefone: '3352-5794 / 3352-5267 / 3397-7834 / 3397-7836', obs: 'distrito.petrolandia@contagem.mg.gov.br' },
+                { nome: 'ESF Campo Alto (Eq. 17)', telefone: '3391-8888', obs: 'ubs.campoaltotropical1@gmail.com' },
+                { nome: 'ESF Tropical I (Eq. 61)', telefone: '3391-8888', obs: 'ubs.campoaltotropical1@gmail.com' },
+                { nome: 'UBS São Luiz I (ESF São Luiz I - Eq 56)', telefone: '3352-3697', obs: 'ubs.saoluiz1@contagem.mg.gov.br' },
+                { nome: 'UBS São Luiz II (ESF São Luiz II - Eq 57)', telefone: '3352-5783', obs: 'ubs.saoluiz2@gmail.com' },
+                { nome: 'UBS Petrolândia (ESF Petrolândia I - Eq 58)', telefone: '3352-4695-353-3926', obs: 'ubs.petrolandia1@contagem.mg.gov.br' },
+                { nome: 'UBS Duque de Caxias (ESF Petrolândia II - Eq 59)', telefone: '3352-6684 / 99257-2430', obs: 'petro2marca@gmail.com' },
+                { nome: 'UBS Duque de Caxias (ESF Petrolândia III - Eq 401)', telefone: '3352-6684 / 99257-2430', obs: 'petro2marca@gmail.com' },
+                { nome: 'UBS Duque de Caxias - ESF Duque de Caxias I', telefone: '3352-6684 / 99257-2430', obs: 'petro2marca@gmail.com' },
+                { nome: 'UBS Sapucaias (ESF Sapucais II - Eq. 87)', telefone: '3352-4673 / 3397-8120 / 99257-2431', obs: 'marcacaosapucaias@gmail.com' },
+                { nome: 'UBS Sapucaias (ESF Sapucais I - Eq 60)', telefone: '3352-4673 / 3397-8120 / 99257-2431', obs: 'marcacaosapucaias@gmail.com' },
+                { nome: 'UBS Tropical II', telefone: '3352-5784 / 99257-1524', obs: 'ubs.tropical2@contagem.mg.gov.br' },
+                { nome: 'ESF Tropical II (Eq 62)', telefone: '3352-5784 / 99257-1524', obs: 'ubs.tropical2@contagem.mg.gov.br' },
+                { nome: 'UBS Nascentes Imperiais (ESF Nascentes Imperiais)', telefone: '3911-3701', obs: 'ubsnascentesimperiais@gmail.com' },
+                { nome: 'UBS Nascentes Imperiais (Eq.400)', telefone: '3911-3701', obs: 'ubsnascentesimperiais@gmail.com' },
+                { nome: 'UBS Estâncias Imperiais (ESF Estâncias Imperiais Eq. 90)', telefone: '3352-8660', obs: 'ubs.estanciasimperiais@contagem.mg.gov.br' },
+                // ===== SEDE =====
+                { nome: 'Distrito Sanitário Sede', telefone: '(31) 3391-1840', obs: 'marcacao64e65@outlook.com' },
                 { nome: 'UBS Centro', telefone: '3397-0340 / 3397-0341', obs: 'ubscentrocad@gmail.com' },
                 { nome: 'UBS Linda Vista', telefone: '3397-0342 / 3397-0343', obs: 'ubslindavista@gmail.com' },
                 { nome: 'UBS Bernardo Monteiro', telefone: '3397-0344 / 3397-0345', obs: 'ubs.bernardo.monteiro@gmail.com' },
+                { nome: 'UBS Alvorada', telefone: 'Sem telefone', obs: 'alvoradapsf@gmail.com' },
+                { nome: 'UBS Funcionários (Eq. 69)', telefone: 'Sem telefone', obs: 'ubsfuncionarios1@gmail.com' },
+                { nome: 'PSF Vila Itália', telefone: 'Sem telefone', obs: 'psfvilaitalia@gmail.com' },
+                { nome: 'UBS Chácaras Novo', telefone: 'Sem telefone', obs: 'ubs.chacaras@contagem.mg.gov.br' },
+                { nome: 'UBS Maria da Conceição', telefone: 'Sem telefone', obs: 'ubsmariadaconceicao@gmail.com' },
+                { nome: 'USF Canadá', telefone: 'Sem telefone', obs: 'psfcanada@yahoo.com / ubs.canada@contagem.mg.gov.br' },
+                { nome: 'UBS Unidade XVI', telefone: 'Sem telefone', obs: 'ubsubssede@gmail.com' },
+                { nome: 'UBS SEDE', telefone: 'Sem telefone', obs: 'ubssede@gmail.com' },
+                { nome: 'UBS Nossa Senhora de Fátima', telefone: '3397-0346 / 3397-0347', obs: '' },
+                { nome: 'UBS Praia', telefone: '3397-0350 / 3397-0351', obs: 'praiamarcacao@gmail.com' },
+                { nome: 'UBS Santa Helena', telefone: '3397-0352 / 3397-0353', obs: '' },
+                { nome: 'UBS São Geraldo', telefone: '3397-0354 / 3397-0355', obs: '' },
+                { nome: 'UBS Vila Rica', telefone: '3397-0319', obs: '' },
+                // ===== RIACHO =====
+                { nome: 'Distrito Sanitário Riacho', telefone: '3911-7179 / 3911-7180', obs: 'gc.distritoriacho@gmail.com' },
                 { nome: 'UBS Monte Castelo', telefone: '3352-5314 / 3246-4900', obs: 'ubsmontecastelo.marcacao@gmail.com' },
                 { nome: 'UBS Novo Riacho', telefone: '3352-5266 / 3396-3605', obs: 'ubsnovoriacho.marcacao@gmail.com' },
                 { nome: 'UBS Durval de Barros I', telefone: '3385-5808', obs: 'ubsdurval1.marcacao@gmail.com' },
@@ -1050,7 +948,7 @@
     // ============================================================
     // FUNCIONALIDADES
     // ============================================================
-    const categoriesContainer = document.getElementById('categoriesContainer');
+    const catsContainer = document.getElementById('categoriesContainer');
     const phonesSection = document.getElementById('phonesSection');
     const phonesGrid = document.getElementById('phonesGrid');
     const sectionTitleText = document.getElementById('sectionTitleText');
@@ -1064,71 +962,62 @@
     const categoryCards = document.querySelectorAll('.category-card');
     let currentCategory = null;
 
-    // ============================================================
-    // RENDERIZAR CATEGORIAS
-    // ============================================================
-    function renderCategories(filter = '') {
-        let visibleCount = 0;
-        const searchTerm = filter.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    function renderCategorias(filtro = '') {
+        let visiveis = 0;
+        const termo = filtro.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
         categoryCards.forEach(card => {
-            const searchData = card.getAttribute('data-category').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const cardText = card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const dadosCard = card.getAttribute('data-category').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const textoCard = card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             
-            if (searchData.includes(searchTerm) || cardText.includes(searchTerm)) {
+            if (dadosCard.includes(termo) || textoCard.includes(termo)) {
                 card.style.display = '';
-                visibleCount++;
+                visiveis++;
             } else {
                 card.style.display = 'none';
             }
         });
 
-        visibleCountSpan.textContent = visibleCount;
+        visibleCountSpan.textContent = visiveis;
         totalCountSpan.textContent = categoryCards.length;
 
-        if (visibleCount === 0 && !phonesSection.classList.contains('active')) {
+        if (visiveis === 0 && !phonesSection.classList.contains('active')) {
             noResults.classList.add('show');
         } else {
             noResults.classList.remove('show');
         }
 
-        if (searchInput.value.length > 0) {
-            clearBtn.classList.add('visible');
-        } else {
-            clearBtn.classList.remove('visible');
-        }
+        clearBtn.classList.toggle('visible', searchInput.value.length > 0);
     }
 
-    // ============================================================
-    // EXIBIR TELEFONES DE UMA CATEGORIA
-    // ============================================================
-    function showPhones(categoryKey) {
-        const data = telefonesData[categoryKey];
-        if (!data) return;
+    function mostrarTelefones(chave) {
+        const dadosCat = dados[chave];
+        if (!dadosCat) return;
 
-        currentCategory = categoryKey;
-        sectionTitleText.textContent = data.titulo;
+        currentCategory = chave;
+        sectionTitleText.textContent = dadosCat.titulo;
         
         phonesGrid.innerHTML = '';
-        data.telefones.forEach((tel, index) => {
+        dadosCat.telefones.forEach((tel, i) => {
             const card = document.createElement('div');
             card.className = 'phone-card';
-            card.style.animationDelay = `${index * 0.05}s`;
+            card.style.animationDelay = `${i * 0.03}s`;
             
-            const obsHtml = tel.obs ? `<div class="phone-obs"><i class="fas fa-info-circle"></i> ${tel.obs}</div>` : '';
+            const obsHtml = tel.obs ? `<div class="obs"><i class="fas fa-info-circle"></i> ${tel.obs}</div>` : '';
+            const telLimpo = tel.telefone.replace(/\s/g, '').replace(/\//g, '').replace(/-/g, '');
             
             card.innerHTML = `
                 <div class="phone-icon">
-                    <i class="fas ${data.icon}"></i>
+                    <i class="fas ${dadosCat.icon}"></i>
                 </div>
-                <div class="phone-content">
-                    <div class="phone-name">${tel.nome}</div>
-                    <div class="phone-number">
-                        <a href="tel:${tel.telefone.replace(/\s/g, '').replace(/\//g, '')}">${tel.telefone}</a>
+                <div class="phone-info">
+                    <div class="name">${tel.nome}</div>
+                    <div class="number">
+                        <a href="tel:${telLimpo}">${tel.telefone}</a>
                     </div>
                     ${obsHtml}
                 </div>
-                <div class="phone-copy" onclick="copiarTelefone(this, '${tel.telefone.replace(/'/g, "\\'")}')" title="Copiar telefone">
+                <div class="copy-btn" onclick="copiarTelefone(this, '${tel.telefone.replace(/'/g, "\\'")}')" title="Copiar">
                     <i class="far fa-copy"></i>
                 </div>
             `;
@@ -1136,66 +1025,52 @@
             phonesGrid.appendChild(card);
         });
 
-        // Esconder categorias e mostrar telefones
-        categoriesContainer.style.display = 'none';
+        catsContainer.style.display = 'none';
         phonesSection.classList.add('active');
         document.querySelector('.info-badge').style.display = 'none';
         noResults.classList.remove('show');
     }
 
-    // ============================================================
-    // VOLTAR PARA CATEGORIAS
-    // ============================================================
-    function goBack() {
-        categoriesContainer.style.display = 'grid';
+    function voltar() {
+        catsContainer.style.display = 'grid';
         phonesSection.classList.remove('active');
         document.querySelector('.info-badge').style.display = 'flex';
         currentCategory = null;
-        renderCategories(searchInput.value);
+        renderCategorias(searchInput.value);
     }
 
-    // ============================================================
-    // COPIAR TELEFONE
-    // ============================================================
-    function copiarTelefone(element, telefone) {
-        const textToCopy = telefone;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            const icon = element.querySelector('i');
+    function copiarTelefone(elemento, telefone) {
+        navigator.clipboard.writeText(telefone).then(() => {
+            const icon = elemento.querySelector('i');
             icon.className = 'fas fa-check';
-            element.classList.add('copied');
+            elemento.classList.add('copied');
             setTimeout(() => {
                 icon.className = 'far fa-copy';
-                element.classList.remove('copied');
-            }, 2000);
+                elemento.classList.remove('copied');
+            }, 1500);
         }).catch(() => {
-            // Fallback para navegadores antigos
             const textArea = document.createElement('textarea');
-            textArea.value = textToCopy;
+            textArea.value = telefone;
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand('copy');
             document.body.removeChild(textArea);
             
-            const icon = element.querySelector('i');
+            const icon = elemento.querySelector('i');
             icon.className = 'fas fa-check';
-            element.classList.add('copied');
+            elemento.classList.add('copied');
             setTimeout(() => {
                 icon.className = 'far fa-copy';
-                element.classList.remove('copied');
-            }, 2000);
+                elemento.classList.remove('copied');
+            }, 1500);
         });
     }
 
-    // ============================================================
-    // EVENTOS
-    // ============================================================
-
-    // Clique nas categorias
+    // Eventos
     categoryCards.forEach(card => {
         card.addEventListener('click', function() {
-            const categoryKey = this.getAttribute('data-category');
-            // Mapear para as chaves corretas
-            const keyMap = {
+            const chave = this.getAttribute('data-category');
+            const mapa = {
                 'ceaps alto custo': 'ceaps',
                 'cmc central marcação consultas': 'cmc',
                 'diversos cce caps samu ouvidoria': 'diversos',
@@ -1205,37 +1080,31 @@
                 'upas pronto atendimento urgência': 'upas',
                 'contatos telefônicos geral diretoria': 'contatos_geral'
             };
-            const mappedKey = keyMap[categoryKey] || categoryKey;
-            if (telefonesData[mappedKey]) {
-                showPhones(mappedKey);
-            }
+            const chaveMapeada = mapa[chave] || chave;
+            if (dados[chaveMapeada]) mostrarTelefones(chaveMapeada);
         });
     });
 
-    // Botão voltar
-    backBtn.addEventListener('click', goBack);
+    backBtn.addEventListener('click', voltar);
 
-    // Busca
     searchInput.addEventListener('input', function() {
         if (phonesSection.classList.contains('active')) {
-            // Se estiver na seção de telefones, busca local
-            const searchTerm = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const phoneCards = phonesGrid.querySelectorAll('.phone-card');
-            let visible = 0;
+            const termo = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const cards = phonesGrid.querySelectorAll('.phone-card');
+            let visiveis = 0;
             
-            phoneCards.forEach(card => {
-                const text = card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-                if (text.includes(searchTerm)) {
+            cards.forEach(card => {
+                const texto = card.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                if (texto.includes(termo)) {
                     card.style.display = '';
-                    visible++;
+                    visiveis++;
                 } else {
                     card.style.display = 'none';
                 }
             });
             
-            // Mostrar mensagem se não houver resultados
-            const noResultsPhones = document.getElementById('noResultsPhones');
-            if (visible === 0) {
+            let noResultsPhones = document.getElementById('noResultsPhones');
+            if (visiveis === 0) {
                 if (!noResultsPhones) {
                     const div = document.createElement('div');
                     div.id = 'noResultsPhones';
@@ -1250,55 +1119,40 @@
                 } else {
                     noResultsPhones.style.display = 'block';
                 }
-            } else {
-                const noResultsPhonesEl = document.getElementById('noResultsPhones');
-                if (noResultsPhonesEl) noResultsPhonesEl.style.display = 'none';
+            } else if (noResultsPhones) {
+                noResultsPhones.style.display = 'none';
             }
             
-            if (this.value.length > 0) {
-                clearBtn.classList.add('visible');
-            } else {
-                clearBtn.classList.remove('visible');
-            }
+            clearBtn.classList.toggle('visible', this.value.length > 0);
             return;
         }
-        
-        renderCategories(this.value);
+        renderCategorias(this.value);
     });
 
-    // Botão limpar
     clearBtn.addEventListener('click', function() {
         searchInput.value = '';
-        if (phonesSection.classList.contains('active')) {
-            // Recarregar telefones
-            if (currentCategory && telefonesData[currentCategory]) {
-                showPhones(currentCategory);
-            }
+        if (phonesSection.classList.contains('active') && currentCategory && dados[currentCategory]) {
+            mostrarTelefones(currentCategory);
         } else {
-            renderCategories('');
+            renderCategorias('');
         }
         searchInput.focus();
     });
 
-    // Tecla ESC para limpar
     searchInput.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             searchInput.value = '';
-            if (phonesSection.classList.contains('active')) {
-                if (currentCategory && telefonesData[currentCategory]) {
-                    showPhones(currentCategory);
-                }
+            if (phonesSection.classList.contains('active') && currentCategory && dados[currentCategory]) {
+                mostrarTelefones(currentCategory);
             } else {
-                renderCategories('');
+                renderCategorias('');
             }
             searchInput.focus();
         }
     });
 
-    // ============================================================
-    // INICIALIZAÇÃO
-    // ============================================================
-    renderCategories('');
+    // Inicializar
+    renderCategorias('');
 </script>
 
 </body>
